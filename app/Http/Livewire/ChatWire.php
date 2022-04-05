@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 use App\Models\Conversation;
 use App\Models\Message;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 class ChatWire extends Component
 {

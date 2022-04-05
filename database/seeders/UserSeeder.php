@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
             'password'=>Hash::make('password')
         ]);
         User::create([
-            'name'=>'DECKY',
+            'name'=>'MIDORIYA IZUKU',
             'username'=>'deku',
             'email'=>'deku@gmail.com',
             'password'=>Hash::make('password')

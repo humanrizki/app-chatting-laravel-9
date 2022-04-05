@@ -44,12 +44,16 @@
                 @endif
                 @if (!is_null($conversation_id))
                 <div class="w-full mt-3">
+
                     <div wire:ignore class="p-2 border-2 border-blue-500 rounded-b mb-2">
                         <trix-editor
                         wire:model.debounce.365ms="message" class="editor-content"></trix-editor>
                     </div>
                     {{-- <input type="text" wire:model="message" class="p-2 border-blue rounded border w-4/5"> --}}
-                    <button wire:click.prevent="addMessage" class="p-2 bg-blue-500 rounded text-white w-1/5">Send</button>
+                    <button wire:click.prevent="addMessage" class="p-2  rounded text-white w-1/5 @if($message == null) bg-gray-400 @else bg-blue-500 @endif" @if ($message == null)
+                        disabled
+                    @endif>Send</button>
+
                 </div>
                 @endif
             </div>
