@@ -13,13 +13,21 @@ class ChatWire extends Component
     public $conversations;
     public $message;
     public $user_select_id;
+    public $message_id;
     public function mount(){
         $this->conversations = Conversation::search(auth()->user()->id)->get();
+        $this->message_id = null;
     }
     public function setConversation($id, $user_id){
         $this->conversation_id = Conversation::find($id);
         $this->user_select_id = $user_id;
-        // dd($this->user_select_id);
+    }
+    public function deleteMessage($id){
+        Message::destroy($id);
+    }
+    public function editMessage($id){
+        $this->message = Message::find($id)->message;
+        $this->message_id = $id;
     }
     public function addMessage(){
         Message::create([
@@ -28,6 +36,13 @@ class ChatWire extends Component
             'message'=>$this->message
         ]);
         $this->reset('message');
+    }
+    public function updateMessage($id){
+        Message::where('id',$id)->update(['message'=>$this->message]);
+        $this->reset('message','message_id');
+    }
+    public function cancellEditMessage(){
+        $this->reset('message','message_id');
     }
     public function render()
     {
